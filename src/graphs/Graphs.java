@@ -7,14 +7,10 @@ package graphs;
 
 import java.util.Scanner;
 import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 /**
@@ -25,7 +21,9 @@ public class Graphs extends Application {
     
     @Override
     public void start(Stage primaryStage) {
+        
         Scanner scan = new Scanner(System.in);
+        
         System.out.println("Please enter your first x coordinate");
         int x1 = scan.nextInt();
         System.out.println("Please enter your first y coordinate");
@@ -53,15 +51,30 @@ public class Graphs extends Application {
 
         GraphicsContext gc = canvas.getGraphicsContext2D();
 
-        
+        //makes the base lines of the graph
         gc.moveTo(0, width/2);
         gc.lineTo(width, width/2);
         gc.stroke();
+        
         
         gc.moveTo(width/2, 0);
         gc.lineTo(width/2, width);
         gc.stroke();
         
+        //labels base lines
+        gc.strokeText("x", 0, width/2 +10);
+        gc.strokeText("y", width/2 -10, 10);
+        
+        //adds line
+        x1 = x1*100;
+        y1 = y1*100;
+        y2 = y2*100;
+        x2 = x2*100;
+        b = b*100;
+        gc.moveTo(width/2, width/2 -b);
+        gc.lineTo(width/2 +x1, width/2 -y1);
+        gc.lineTo(width/2 + x2, width/2 -y2);
+        gc.stroke();
         
         root.getChildren().add(canvas);
 
