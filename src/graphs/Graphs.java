@@ -19,7 +19,7 @@ import javafx.stage.Stage;
  */
 public class Graphs extends Application {
     
-    @Override
+   @Override
     public void start(Stage primaryStage) {
         
         Scanner scan = new Scanner(System.in);
@@ -34,15 +34,17 @@ public class Graphs extends Application {
         System.out.println("Please enter your second y coordinate");
         int y2 = scan.nextInt();
 
-        int deltaX = x1 - x2;
-        int deltaY = y1 - y2;
+        double deltaX = x1 - x2;
+        double deltaY = y1 - y2;
 
-        int m = deltaY / deltaX;
+        double m = (deltaY)/(deltaX);
 
-        int b = y1 - x1 * m;
+        double b = y1 - (x1 * m);
 
-        System.out.println(m);
-        System.out.println(b);
+        //I think these don't accept negatives...
+        System.out.println(deltaX + ", " + deltaY);
+        System.out.println("The slope is:" +m);
+        System.out.println("The y intercept is:" + b);
 
         int width = 600;
 
@@ -65,16 +67,21 @@ public class Graphs extends Application {
         gc.strokeText("x", 0, width/2 +10);
         gc.strokeText("y", width/2 -10, 10);
         
-        //adds line
-        x1 = x1*100;
-        y1 = y1*100;
-        y2 = y2*100;
-        x2 = x2*100;
-        b = b*100;
+        //adds line BUT NOT ALL FUNCTIONS
+        x1 = x1*20;
+        y1 = y1*20;
+        y2 = y2*20;
+        x2 = x2*20;
+       
+        b = b*20;
         gc.moveTo(width/2, width/2 -b);
         gc.lineTo(width/2 +x1, width/2 -y1);
         gc.lineTo(width/2 + x2, width/2 -y2);
         gc.stroke();
+//        
+//        gc.moveTo(width/2 +x1, width/2 -y1);
+//        gc.lineTo(width/2 + x2, width/2 -y2);
+//        gc.stroke();
         
         root.getChildren().add(canvas);
 
